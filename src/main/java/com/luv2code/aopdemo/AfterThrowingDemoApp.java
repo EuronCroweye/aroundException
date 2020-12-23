@@ -22,7 +22,9 @@ public class AfterThrowingDemoApp {
 		List<Account> theAccounts=null;
 		
 		try {
-			theAccounts=theAccountDAO.findAccounts();
+			// add a boolean flag to simulate exception
+			boolean tripWhire=true;			
+			theAccounts=theAccountDAO.findAccounts(tripWhire);
 		}
 		catch(Exception exc) {
 			System.out.println("\n\nMain Program ... cought exception: "
