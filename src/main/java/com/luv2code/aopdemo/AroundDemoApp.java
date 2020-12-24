@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.luv2code.aopdemo.dao.AccountDAO;
 import com.luv2code.aopdemo.dao.MembershipDAO;
+import com.luv2code.aopdemo.service.TrafficFortuneService;
 
 public class AroundDemoApp {
 
@@ -16,29 +17,18 @@ public class AroundDemoApp {
 				AnnotationConfigApplicationContext(DemoConfig.class);
 		
 		// get the bean from spring context
-		AccountDAO theAccountDAO=context.getBean("accountDAO", AccountDAO.class);		
+		TrafficFortuneService theFortuneService=
+				context.getBean("trafficFortuneService", TrafficFortuneService.class);		
 
-		// call method to find the accounts
-		List<Account> theAccounts=null;
+	System.out.println("\nMain Program: AroundDemoApp");
 		
-		try {
-			// add a boolean flag to simulate exception
-			boolean tripWhire=false;			
-			theAccounts=theAccountDAO.findAccounts(tripWhire);
-		}
-		catch(Exception exc) {
-			System.out.println("\n\nMain Program ... cought exception: "
-					+exc);
-		}
-		
-		// display the accounts
-		System.out.println("\n\nMain Program: AfterThrowingDemoApp");
-		System.out.println("-----");
-		
-		System.out.println(theAccounts);
-		
-		System.out.println("\n");
-		
+	System.out.println("Calling getFortune");
+	
+	String data = theFortuneService.getFortune();
+	
+	System.out.println("\n My fortune is: "+ data);
+	
+	System.out.println("Finished");
 		// close the context
 		context.close();
 		
