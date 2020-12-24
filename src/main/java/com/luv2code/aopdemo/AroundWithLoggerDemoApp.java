@@ -1,6 +1,7 @@
 package com.luv2code.aopdemo;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -8,10 +9,13 @@ import com.luv2code.aopdemo.dao.AccountDAO;
 import com.luv2code.aopdemo.dao.MembershipDAO;
 import com.luv2code.aopdemo.service.TrafficFortuneService;
 
-public class AroundDemoApp {
+public class AroundWithLoggerDemoApp {
 
 	public static void main(String[] args) {
 
+		Logger myLogger = 
+				Logger.getLogger(AroundWithLoggerDemoApp.class.getName());
+		
 		// read spring config java class
 		AnnotationConfigApplicationContext context = new
 				AnnotationConfigApplicationContext(DemoConfig.class);
@@ -20,15 +24,15 @@ public class AroundDemoApp {
 		TrafficFortuneService theFortuneService=
 				context.getBean("trafficFortuneService", TrafficFortuneService.class);		
 
-	System.out.println("\nMain Program: AroundDemoApp");
+	myLogger.info("\nMain Program: AroundDemoApp");
 		
-	System.out.println("Calling getFortune");
+	myLogger.info("Calling getFortune");
 	
 	String data = theFortuneService.getFortune();
 	
-	System.out.println("\nMy fortune is: "+ data);
+	myLogger.info("\nMy fortune is: "+ data);
 	
-	System.out.println("Finished");
+	myLogger.info("Finished");
 		// close the context
 		context.close();
 		
