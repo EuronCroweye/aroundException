@@ -49,8 +49,11 @@ public class MyDemoLoggingAspect {
 			myLogger.warning(e.getMessage());
 			
 			// give user a custom message
-			result="Major accident! But no worries,"
+		/*	result="Major accident! But no worries,"
 					+ " your private helicopter is on the way!";
+			*/
+			throw e;
+			
 		}
 		
 		// get end timestamp
